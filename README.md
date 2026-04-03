@@ -1,0 +1,57 @@
+# ReviewPost (レビューポスト)
+
+飲食店の来店客が、食後にQRコードなどからアクセスして「感想カード」を作成し、SNSへシェアできるモバイルWebアプリ（プロトタイプ）です。
+
+## 📱 アプリの目的
+美味しい食事の思い出を、自分だけのおしゃれな「1枚のカード画像」にして保存・シェアしてもらうこと。
+SNSでの口コミ拡散や、再来店（クーポン発行）を促進する狙いがあります。
+
+## 🛠️ 技術スタック
+- **フロントエンド**: HTML5, CSS3, JavaScript (Vanilla JS)
+- **スタイリング**: Tailwind CSS (CDN経由)
+- **アイコン/フォント**: Google Fonts (Noto Serif JP, Plus Jakarta Sans), Material Symbols
+- **画像生成**: html2canvas (DOM要素をCanvas経由で画像化)
+- **インフラ/ホスティング**: GitHub Pages
+
+## 📖 画面構成と機能（全4画面）
+1. **`index.html` (ウェルカム画面)**
+   - お店のロゴと「カードをつくる」ボタン。
+2. **`input.html` (感想入力画面)**
+   - 4つのステップ（ベストメニュー選択 → 気分選択 → 写真アップロード → ひとこと入力）をJavaScriptで制御。
+   - 選んだデータはブラウザの `sessionStorage` に一時保存されます。
+3. **`preview.html` (プレビュー＆シェア画面)**
+   - `sessionStorage` からデータを読み込み、カードに反映。
+   - 「デザインを変える」ボタンで3種類のCSSスタイル（Instagram風/シネマティック/雑誌風）を切り替え。
+   - 「保存する」: `html2canvas` でカード部分を画像化し、端末にダウンロード。
+   - 「シェアする」: Web Share API を使用し、生成した画像をOS標準の共有シート（X, Instagram等）へ直接シェア。
+4. **`thanks.html` (サンクス＆クーポン画面)**
+   - シェア完了後（または保存後）に遷移。次回使えるクーポンを提示。
+
+## 📝 制作ログ (Changelog)
+
+### 2026-04-04
+- **プロジェクト立ち上げ**
+  - Google Stitchで生成されたベースとなるUIコード（1画面分）をもとに、Cursorで開発を引き継ぎ。
+- **UI/UXの構築**
+  - 1つのHTMLから、要件定義に基づく4画面（`index.html`, `input.html`, `preview.html`, `thanks.html`）への分割と実装。
+  - 画面間のナビゲーション（リンク遷移）を構築。
+- **状態管理とデータ連携の実装**
+  - `input.html` における4ステップのUI切り替え（JS）。
+  - `sessionStorage` を用いた入力データ（メニュー、気分、写真、感想）の一時保存。
+  - `preview.html` へのデータ読み込みと、動的なカード生成（AI風コピーの自動生成など）。
+- **モバイル最適化（ネイティブアプリ風の挙動）**
+  - `<meta name="viewport">` の調整（`user-scalable=no`, `maximum-scale=1.0`）で不要なズームを防止。
+  - iOSでの入力時ズームを防ぐため、`textarea` のフォントサイズを `16px` に指定。
+  - テキストの長押し選択（コピー等）を無効化（`user-select: none`）。※入力欄は例外。
+  - Web App Manifest / iOSメタタグの追加で、PWA（ホーム画面に追加）時の全画面表示に対応。
+- **画像生成・シェア機能の実装**
+  - `html2canvas` ライブラリを導入し、DOM（HTML要素）からPNG画像（`review-post.png`）を生成・ダウンロードする処理を追加。
+  - Web Share API (`navigator.share`) を実装し、生成した画像ファイルを直接SNS等へシェアする機能を構築。
+- **デプロイ**
+  - ディレクトリ構造の見直し（`Stitch/` → `projects/review-post/` へ移動・リネーム）。
+  - Gitリポジトリの初期化と初回コミット。
+  - GitHub CLI (`gh`) を使用してリモートリポジトリ（`Tok9322/review-post`）を作成＆プッシュ。
+  - GitHub Pagesを有効化し、インターネット上に公開（[https://tok9322.github.io/review-post/](https://tok9322.github.io/review-post/)）。
+
+---
+*※ 本アプリはデモモックアップのため、データベースやバックエンドサーバーは使用していません。入力データはブラウザのセッション内のみに留まり、サーバーへは送信されません。*
