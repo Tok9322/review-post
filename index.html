@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#eee0d5",
+                    "on-tertiary": "#372f28",
+                    "secondary-container": "#753401",
+                    "surface-bright": "#393939",
+                    "tertiary": "#d2c4b9",
+                    "on-surface": "#e5e2e1",
+                    "surface-tint": "#ffb86b",
+                    "on-tertiary-container": "#463d35",
+                    "primary-fixed": "#ffdcbc",
+                    "error": "#ffb4ab",
+                    "primary": "#ffb86b",
+                    "on-primary-fixed-variant": "#683d00",
+                    "surface-container-highest": "#353535",
+                    "on-tertiary-fixed-variant": "#4e453d",
+                    "secondary": "#ffb68c",
+                    "inverse-primary": "#895100",
+                    "on-tertiary-fixed": "#211a14",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed-variant": "#753401",
+                    "outline-variant": "#564334",
+                    "tertiary-container": "#b4a89e",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#2a2a2a",
+                    "on-primary-container": "#5c3500",
+                    "primary-container": "#f19409",
+                    "on-primary-fixed": "#2c1700",
+                    "surface-variant": "#353535",
+                    "secondary-fixed-dim": "#ffb68c",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error-container": "#93000a",
+                    "surface": "#131313",
+                    "inverse-surface": "#e5e2e1",
+                    "on-secondary-fixed": "#321200",
+                    "on-primary": "#492900",
+                    "on-surface-variant": "#ddc1ae",
+                    "on-background": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "surface-dim": "#131313",
+                    "background": "#131313",
+                    "on-secondary-container": "#fb9f66",
+                    "on-secondary": "#532200",
+                    "tertiary-fixed-dim": "#d2c4b9",
+                    "surface-container": "#20201f",
+                    "primary-fixed-dim": "#ffb86b",
+                    "secondary-fixed": "#ffdbc9",
+                    "outline": "#a48c7a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif JP", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .japanese-serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+        /* Disable text selection for app-like feel */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#131313]/80 backdrop-blur-xl border-b border-outline-variant/10 flex items-center justify-between px-6 h-16">
+<a href="index.html" class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#FFB86B] text-2xl hover:opacity-80 transition-opacity cursor-pointer">home</span>
+</a>
+<h1 class="font-['Noto_Serif_JP'] text-xl font-black text-[#FFB86B]">炭火居酒屋 たなか</h1>
+<div class="w-6"></div> <!-- Spacer for center alignment -->
+</header>
+<main class="w-full max-w-md flex flex-col pt-16 pb-32 min-h-screen">
+<!-- Hero Section -->
+<section class="relative h-[530px] flex flex-col justify-end px-8 pb-12 overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Close-up of sizzling yakitori skewers on a charcoal grill in a dim, atmospheric traditional Japanese izakaya with warm embers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgQhNVgk07zGZNhaxRUccWTJ2WVejWhwwjceFfPu7yFSZyHVf8XMU7HpTBF-ddjNqUtOmz2H3C1HU678ylE7_9Xxvgmoz2VoGY-YnwdqUIhFVnxvhIjAb6NqZ84jO_VLIN9Tnl0TPMmDlB3OeYoHQ5anwqvEb_QDAifbvTrZaZVwy5hWud6Y4CjZ4F1mMpqX2ujmx0kwv-vhb0431Vlgbxsj_1iMQVvUqaoOZ26uSrLbqK_SxsWhdqALNIEIvZLVPGO4E3MlfcfQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+</div>
+<!-- Content -->
+<div class="relative z-10 space-y-6">
+<div class="space-y-2">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-container/30 border border-outline-variant/15 text-on-secondary-container text-xs font-bold tracking-widest uppercase">Premium Experience</span>
+<h2 class="japanese-serif text-5xl font-black leading-tight text-on-surface">ごちそうさまを、<br/><span class="text-primary-fixed-dim">1枚に。</span></h2>
+</div>
+<p class="text-on-surface-variant font-medium max-w-[280px] leading-relaxed">
+                    炭火の香りと共に、あなただけの特別な一皿を記録して、シェアしませんか。
+                </p>
+</div>
+</section>
+<!-- Interaction Area -->
+<section class="px-8 flex flex-col gap-8 -mt-6 relative z-20">
+<!-- Glassy Start Card -->
+<div class="bg-surface-container-high/60 backdrop-blur-xl rounded-lg p-8 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-outline-variant/10">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+</div>
+<div>
+<h3 class="font-bold text-lg text-on-surface">思い出をカタチに</h3>
+<p class="text-sm text-on-surface-variant">写真を撮って、感想を添えるだけ。</p>
+</div>
+</div>
+<button onclick="window.location.href='input.html'" class="w-full h-16 rounded-xl bg-gradient-to-br from-[#FFB86B] to-[#F19409] text-[#492900] font-bold text-lg shadow-lg shadow-primary-container/20 hover:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+                        カードをつくる
+                        <span class="material-symbols-outlined text-2xl">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid - Subtle Info -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">local_activity</span>
+<p class="text-xs font-bold text-on-surface leading-tight">限定クーポン<br/>獲得のチャンス</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary-fixed-dim">share</span>
+<p class="text-xs font-bold text-on-surface leading-tight">SNSで簡単に<br/>共有できます</p>
+</div>
+</div>
+</section>
+<!-- Decorative Quote Area -->
+<section class="mt-16 px-8 flex justify-center opacity-40">
+<div class="text-center italic text-on-surface-variant font-light space-y-1">
+<p class="japanese-serif text-sm">「美味しい」を、ずっと忘れないために。</p>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#131313]/90 backdrop-blur-2xl rounded-t-[3rem] shadow-[0_-8px_32px_rgba(0,0,0,0.15)] flex justify-around items-center px-4 pb-6 pt-2">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#FFB86B] to-[#F19409] text-[#492900] rounded-full p-3 scale-110 -translate-y-2 transition-transform duration-400 active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium">ホーム</span>
+</a>
+<!-- Create -->
+<a class="flex flex-col items-center justify-center text-[#A0A0A0] p-2 hover:text-[#FFB86B] transition-colors" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium">作成</span>
+</a>
+<!-- Coupon -->
+<a class="flex flex-col items-center justify-center text-[#A0A0A0] p-2 hover:text-[#FFB86B] transition-colors" href="#">
+<span class="material-symbols-outlined">local_activity</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium">クーポン</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-[#A0A0A0] p-2 hover:text-[#FFB86B] transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-medium">設定</span>
+</a>
+</nav>
+</body></html>

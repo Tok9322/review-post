@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#eee0d5",
+                    "on-tertiary": "#372f28",
+                    "secondary-container": "#753401",
+                    "surface-bright": "#393939",
+                    "tertiary": "#d2c4b9",
+                    "on-surface": "#e5e2e1",
+                    "surface-tint": "#ffb86b",
+                    "on-tertiary-container": "#463d35",
+                    "primary-fixed": "#ffdcbc",
+                    "error": "#ffb4ab",
+                    "primary": "#ffb86b",
+                    "on-primary-fixed-variant": "#683d00",
+                    "surface-container-highest": "#353535",
+                    "on-tertiary-fixed-variant": "#4e453d",
+                    "secondary": "#ffb68c",
+                    "inverse-primary": "#895100",
+                    "on-tertiary-fixed": "#211a14",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed-variant": "#753401",
+                    "outline-variant": "#564334",
+                    "tertiary-container": "#b4a89e",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#2a2a2a",
+                    "on-primary-container": "#5c3500",
+                    "primary-container": "#f19409",
+                    "on-primary-fixed": "#2c1700",
+                    "surface-variant": "#353535",
+                    "secondary-fixed-dim": "#ffb68c",
+                    "on-error": "#690005",
+                    "surface-container-lowest": "#0e0e0e",
+                    "error-container": "#93000a",
+                    "surface": "#131313",
+                    "inverse-surface": "#e5e2e1",
+                    "on-secondary-fixed": "#321200",
+                    "on-primary": "#492900",
+                    "on-surface-variant": "#ddc1ae",
+                    "on-background": "#e5e2e1",
+                    "inverse-on-surface": "#313030",
+                    "surface-dim": "#131313",
+                    "background": "#131313",
+                    "on-secondary-container": "#fb9f66",
+                    "on-secondary": "#532200",
+                    "tertiary-fixed-dim": "#d2c4b9",
+                    "surface-container": "#20201f",
+                    "primary-fixed-dim": "#ffb86b",
+                    "secondary-fixed": "#ffdbc9",
+                    "outline": "#a48c7a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif JP", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        .japanese-serif {
+            font-family: 'Noto Serif JP', serif;
+        }
+        /* Disable text selection for app-like feel */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Card styles for variations */
+        .card-style-a { /* Instagram-style */
+            background-color: #20201f;
+            padding: 12px;
+        }
+        .card-style-a .card-img {
+            border-radius: 12px;
+            height: 300px;
+        }
+        
+        .card-style-b { /* Cinematic */
+            position: relative;
+            overflow: hidden;
+        }
+        .card-style-b .card-img {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+        }
+        .card-style-b .card-content {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px 24px;
+        }
+
+        .card-style-c { /* Magazine */
+            background-color: #2a2a2a;
+            padding: 32px 24px;
+            background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffb86b" fill-opacity="0.05" fill-rule="evenodd"%3E%3Ccircle cx="3" cy="3" r="3"/%3E%3Ccircle cx="13" cy="13" r="3"/%3E%3C/g%3E%3C/svg%3E');
+        }
+        .card-style-c .card-img {
+            border-radius: 50%;
+            width: 240px;
+            height: 240px;
+            margin: 0 auto;
+            border: 4px solid #ffb86b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center overflow-x-hidden pb-12">
+
+<!-- TopAppBar -->
+<header class="w-full z-50 flex items-center justify-between px-6 h-16 pt-4">
+<a href="input.html" class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant text-2xl hover:text-primary transition-colors cursor-pointer">close</span>
+</a>
+<h1 class="font-['Noto_Serif_JP'] text-sm font-bold text-on-surface-variant tracking-widest">プレビュー</h1>
+<div class="w-6"></div> <!-- Spacer for center alignment -->
+</header>
+
+<main class="w-full max-w-md flex flex-col px-6 mt-4 fade-in">
+    
+    <!-- Header Text -->
+    <div class="text-center mb-6">
+        <h2 class="japanese-serif text-2xl font-bold text-on-surface">素敵な一枚が<br/>完成しました✨</h2>
+    </div>
+
+    <!-- The Generated Card (Container) -->
+    <div id="review-card" class="card-style-a w-full aspect-[4/5] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.4)] flex flex-col overflow-hidden transition-all duration-500 border border-outline-variant/20 mb-8">
+        
+        <!-- Image Area -->
+        <img id="card-image" class="card-img w-full object-cover transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgQhNVgk07zGZNhaxRUccWTJ2WVejWhwwjceFfPu7yFSZyHVf8XMU7HpTBF-ddjNqUtOmz2H3C1HU678ylE7_9Xxvgmoz2VoGY-YnwdqUIhFVnxvhIjAb6NqZ84jO_VLIN9Tnl0TPMmDlB3OeYoHQ5anwqvEb_QDAifbvTrZaZVwy5hWud6Y4CjZ4F1mMpqX2ujmx0kwv-vhb0431Vlgbxsj_1iMQVvUqaoOZ26uSrLbqK_SxsWhdqALNIEIvZLVPGO4E3MlfcfQ" alt="Food photo" />
+        
+        <!-- Content Area -->
+        <div class="card-content flex-1 flex flex-col justify-between pt-4 px-2 pb-2">
+            <div>
+                <h3 id="card-caption" class="japanese-serif text-xl font-bold text-white leading-snug drop-shadow-md">炭火の香りに包まれた、<br/>至福のひととき。</h3>
+                <p id="card-comment" class="text-xs text-white/80 mt-2 font-medium">牛タンが柔らかくて最高でした！接客も丁寧でまた来たいです。</p>
+            </div>
+            
+            <div class="flex items-end justify-between mt-4">
+                <div class="flex items-center gap-2">
+                    <span id="card-mood" class="text-2xl drop-shadow-md">😍</span>
+                    <span id="card-date" class="text-[10px] text-white/60 tracking-wider">2026.4.4</span>
+                </div>
+                <div class="text-right">
+                    <p class="font-['Noto_Serif_JP'] text-sm font-black text-primary drop-shadow-md">炭火居酒屋 たなか</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="space-y-4">
+        
+        <!-- Change Design Button -->
+        <button onclick="cycleDesign()" class="w-full h-14 rounded-xl bg-surface-container border border-outline-variant/50 text-on-surface font-bold text-base hover:bg-surface-container-high hover:border-primary/50 transition-all flex items-center justify-center gap-2 group">
+            <span class="material-symbols-outlined text-primary group-hover:rotate-180 transition-transform duration-500">sync</span>
+            デザインを変える
+        </button>
+
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Save Button -->
+            <button onclick="saveImage()" class="h-14 rounded-xl bg-surface-container border border-outline-variant/50 text-on-surface font-bold text-base hover:bg-surface-container-high transition-all flex items-center justify-center gap-2 relative overflow-hidden">
+                <span id="save-icon" class="material-symbols-outlined text-primary-fixed-dim">download</span>
+                <span id="save-text">保存する</span>
+                
+                <!-- Loading Overlay -->
+                <div id="save-loading" class="absolute inset-0 bg-surface-container flex items-center justify-center hidden">
+                    <span class="material-symbols-outlined text-primary animate-spin">refresh</span>
+                </div>
+            </button>
+            
+            <!-- Share Button -->
+            <button onclick="shareImage()" class="h-14 rounded-xl bg-gradient-to-br from-[#FFB86B] to-[#F19409] text-[#492900] font-bold text-base shadow-lg shadow-primary-container/20 hover:scale-[0.98] transition-transform flex items-center justify-center gap-2 relative overflow-hidden">
+                <span id="share-icon" class="material-symbols-outlined">ios_share</span>
+                <span id="share-text">シェアする</span>
+                
+                <!-- Loading Overlay -->
+                <div id="share-loading" class="absolute inset-0 bg-gradient-to-br from-[#FFB86B] to-[#F19409] flex items-center justify-center hidden">
+                    <span class="material-symbols-outlined text-[#492900] animate-spin">refresh</span>
+                </div>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Map Link -->
+    <div class="mt-8 text-center">
+        <a href="#" class="inline-flex items-center gap-1 text-xs text-on-surface-variant hover:text-primary transition-colors underline decoration-outline-variant/50 underline-offset-4">
+            <span class="material-symbols-outlined text-sm">location_on</span>
+            Googleマップで口コミを書く
+        </a>
+    </div>
+
+</main>
+
+<script>
+    // Load data from sessionStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const menu = sessionStorage.getItem('reviewMenu') || '料理';
+        const mood = sessionStorage.getItem('reviewMood') || '😍';
+        const photo = sessionStorage.getItem('reviewPhoto');
+        const comment = sessionStorage.getItem('reviewComment');
+
+        // Clean up menu emoji if present (e.g. "🥩 牛タン塩" -> "牛タン塩")
+        const cleanMenu = menu.replace(/^[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF]\s*/g, '');
+
+        // Set Image
+        if (photo) {
+            document.getElementById('card-image').src = photo;
+        }
+
+        // Set Mood
+        document.getElementById('card-mood').innerText = mood;
+
+        // Set Comment
+        const commentEl = document.getElementById('card-comment');
+        if (comment) {
+            commentEl.innerText = comment;
+            commentEl.style.display = 'block';
+        } else {
+            commentEl.style.display = 'none';
+        }
+
+        // Set Date
+        const today = new Date();
+        document.getElementById('card-date').innerText = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
+
+        // Generate AI-like Caption based on menu and mood
+        let caption = '';
+        if (mood === '😍') {
+            caption = `${cleanMenu}の香りに包まれた、<br/>至福のひととき。`;
+        } else if (mood === '😊') {
+            caption = `この${cleanMenu}に、<br/>笑顔がこぼれる。`;
+        } else {
+            caption = `また会いに来たくなる、<br/>あの${cleanMenu}の味。`;
+        }
+        document.getElementById('card-caption').innerHTML = caption;
+    });
+
+    // Logic for cycling through card styles
+    const styles = ['card-style-a', 'card-style-b', 'card-style-c'];
+    let currentStyleIndex = 0;
+
+    function cycleDesign() {
+        const card = document.getElementById('review-card');
+        
+        // Remove current style
+        card.classList.remove(styles[currentStyleIndex]);
+        
+        // Update index
+        currentStyleIndex = (currentStyleIndex + 1) % styles.length;
+        
+        // Add new style
+        card.classList.add(styles[currentStyleIndex]);
+
+        // Add a tiny bump animation
+        card.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            card.style.transform = 'scale(1)';
+        }, 150);
+    }
+
+    async function saveImage() {
+        const loading = document.getElementById('save-loading');
+        loading.classList.remove('hidden');
+
+        try {
+            const card = document.getElementById('review-card');
+            
+            // To ensure good image quality, increase scale
+            const canvas = await html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#131313', // Match background
+            });
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'review-post.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            // Temporary success state
+            const icon = document.getElementById('save-icon');
+            const text = document.getElementById('save-text');
+            const originalIcon = icon.innerText;
+            const originalText = text.innerText;
+            
+            icon.innerText = 'check';
+            icon.classList.add('text-green-500');
+            text.innerText = '保存しました';
+            
+            setTimeout(() => {
+                icon.innerText = originalIcon;
+                icon.classList.remove('text-green-500');
+                text.innerText = originalText;
+            }, 3000);
+            
+        } catch (error) {
+            console.error('Error saving image:', error);
+            alert('画像の保存に失敗しました。');
+        } finally {
+            loading.classList.add('hidden');
+        }
+    }
+
+    async function shareImage() {
+        const loading = document.getElementById('share-loading');
+        loading.classList.remove('hidden');
+
+        try {
+            const card = document.getElementById('review-card');
+            const canvas = await html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#131313',
+            });
+            
+            // Convert to blob for sharing
+            canvas.toBlob(async (blob) => {
+                const file = new File([blob], "review-post.png", { type: "image/png" });
+                
+                // Check if Web Share API with files is supported
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    try {
+                        await navigator.share({
+                            title: '炭火居酒屋 たなか',
+                            text: '最高の時間を過ごしました！ #炭火居酒屋たなか #ReviewPost',
+                            files: [file]
+                        });
+                        // Go to thanks page after successful share
+                        window.location.href = 'thanks.html';
+                    } catch (error) {
+                        // User cancelled share or other error
+                        console.log('Share was cancelled or failed:', error);
+                    }
+                } else {
+                    // Fallback for browsers that don't support file sharing
+                    alert('お使いのブラウザは画像シェアに対応していません。「保存する」ボタンから保存して手動でシェアしてください。');
+                    // Still go to thanks page
+                    window.location.href = 'thanks.html';
+                }
+                loading.classList.add('hidden');
+            }, 'image/png');
+            
+        } catch (error) {
+            console.error('Error sharing image:', error);
+            alert('画像のシェア準備に失敗しました。');
+            loading.classList.add('hidden');
+        }
+    }
+</script>
+
+</body></html>
