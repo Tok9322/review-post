@@ -337,27 +337,62 @@
         });
     });
 
-    // Fake photo upload preview
+    // Photo upload with compression to avoid sessionStorage quota limits
     function handlePhotoUpload(input) {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
-                const img = document.getElementById('photo-preview');
-                img.src = e.target.result;
-                img.classList.remove('hidden');
-                uploadedPhotoUrl = e.target.result;
+                const imgObj = new Image();
+                imgObj.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const MAX_SIZE = 1080;
+                    let width = imgObj.width;
+                    let height = imgObj.height;
+
+                    if (width > height) {
+                        if (width > MAX_SIZE) {
+                            height *= MAX_SIZE / width;
+                            width = MAX_SIZE;
+                        }
+                    } else {
+                        if (height > MAX_SIZE) {
+                            width *= MAX_SIZE / height;
+                            height = MAX_SIZE;
+                        }
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(imgObj, 0, 0, width, height);
+
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                    
+                    const imgPreview = document.getElementById('photo-preview');
+                    imgPreview.src = compressedDataUrl;
+                    imgPreview.classList.remove('hidden');
+                    uploadedPhotoUrl = compressedDataUrl;
+                };
+                imgObj.src = e.target.result;
             }
-            reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(file);
         }
     }
 
     // Save and go to preview
     function submitForm() {
         const comment = document.getElementById('comment-input').value.trim();
-        sessionStorage.setItem('reviewMenu', selectedMenu);
-        sessionStorage.setItem('reviewMood', selectedMood);
-        sessionStorage.setItem('reviewPhoto', uploadedPhotoUrl);
-        sessionStorage.setItem('reviewComment', comment);
+        try {
+            sessionStorage.setItem('reviewMenu', selectedMenu);
+            sessionStorage.setItem('reviewMood', selectedMood);
+            sessionStorage.setItem('reviewPhoto', uploadedPhotoUrl);
+            sessionStorage.setItem('reviewComment', comment);
+        } catch (e) {
+            console.error('Storage error:', e);
+            alert('写真のサイズが大きすぎるため、保存できませんでした。容量を減らしてもう一度お試しください。');
+            return;
+        }
         
         window.location.href = 'preview.html';
     }
